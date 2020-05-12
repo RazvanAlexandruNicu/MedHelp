@@ -1,15 +1,37 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from users.models import extendedUser, Appointment, Prescription
 
-from users.models import extendedUser
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
+class TimeInput(forms.DateInput):
+    input_type = 'time'
+
+class requestAppointmentForm(forms.ModelForm):
+    description = forms.CharField(widget=forms.Textarea)
+    date = forms.DateField(widget = DateInput)
+    time = forms.CharField(widget = TimeInput)
+    class Meta:
+            model=Appointment #or whatever object
+            fields = ['description', 'date', 'time']
+            widgets = { 'date' : DateInput(), 'time' : TimeInput()}
+
+class PrescriptionForm(forms.ModelForm):
+    patient = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea)
+    class Meta:
+            model = Prescription #or whatever object
+            fields = ['patient', 'description']
+
+class DecideRequests(forms.Form):
+    info = forms.CharField()
 
 class UserRegisterForm(UserCreationForm):
-    #email = forms.EmailField()
     class Meta:
         model = extendedUser
-        fields = ['username', 'email', 'medic_code', 'password1', 'password2']
+        fields = ['username', 'firstname', 'lastname', 'email', 'medic_code', 'password1', 'password2']
 
     def clean(self):
         cleaned_data = super(UserRegisterForm, self).clean()
@@ -26,7 +48,7 @@ class UserRegisterForm(UserCreationForm):
 class UserRegisterFormByAdmin(UserCreationForm):
     class Meta:
         model = extendedUser
-        fields = ['username', 'email', 'medic_code', 'password1', 'password2', 'type']
+        fields = ['username', 'firstname', 'lastname', 'email', 'medic_code', 'password1', 'password2', 'type']
 
     def clean(self):
         cleaned_data = super(UserRegisterFormByAdmin, self).clean()

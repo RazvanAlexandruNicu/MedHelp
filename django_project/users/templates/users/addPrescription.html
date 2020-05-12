@@ -1,0 +1,37 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Add prescription</legend>
+            <label for="mydropdown">Select patient*</label>
+            <p>
+                <select id="mydropdown" name="selected_pacient" onchange="document.getElementById('id_patient').value=this.value;">
+                    <option selected="selected"> Not selected </option>
+                    {% for patient in patients %}
+                    <option>({{ patient.username }}) {{ patient.firstname }} {{ patient.lastname }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Adaugă</button>
+        </div>
+    </form>
+</div>
+<!--<article class="media content-section">-->
+<!--    <div class="media-body">-->
+<!--        <div class="article-metadata">-->
+<!--            <a class="mr-2" href="#">{{ post.author }}</a>-->
+<!--            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>-->
+<!--        </div>-->
+<!--        <h2><a class="article-title" href="#">{{ post.title }}</a></h2>-->
+<!--        <p class="article-content">{{ post.content }}</p>-->
+<!--    </div>-->
+<!--</article>-->
+{% endblock content %}

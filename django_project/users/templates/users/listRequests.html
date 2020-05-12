@@ -1,0 +1,70 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="menu">
+    <div class="content-section">
+     {% if requests|length <= 0 %}
+        <h2> You have no incoming requests</h2>
+     {% else %}
+     <form id="myform">
+         {% for request in requests %}
+         {% if request.pending == True %}
+         <div id="request{{request.pk}}"style="background:#4C96CB; color:#EDEFF2" class="post req">
+             <p> Patient: {{ request.user.firstname }} {{ request.user.lastname }} </p>
+             <p> Requested Date: {{ request.date }} </p>
+             <p> Requested Time: {{ request.time }} </p>
+             <p> {{ request.description }}</p>
+             <p> <label>Accept</label>
+                 <input type="radio" id="1radio{{request.pk}}" name="{{request.pk}}" value="1">
+                 <label>Refuse</label>
+                 <input type="radio" id="2radio{{request.pk}}" name="{{request.pk}}" value="0">
+             </p>
+         </div>
+         {%endif%}
+         {% endfor %}
+     </form>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            {{form|crispy}}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">ANSWER</button>
+        </div>
+    </form>
+    {% endif %}
+    </div>
+</div>
+<style>
+    #div_id_info {
+        display:none;
+    }
+</style>
+<script>
+    document.getElementById("myform").addEventListener('change', changeAspect);
+    function changeAspect(event) {
+
+    let info_field = document.getElementById("id_info")
+    info_field.value = ""
+
+      const btn = event.target;
+      pk = btn.name;
+      let myform = btn.form
+      //console.log({{requests}})
+       console.log(btn.value);
+      let value = btn.value
+      if(value == 0)
+        document.getElementById("request"+pk).style.backgroundColor="#FF8484"
+      if(value == 1)
+        document.getElementById("request"+pk).style.backgroundColor="#21B6A8"
+
+
+      Array.from(document.getElementsByClassName('req'))
+            .forEach(x => info_field.value = info_field.value +
+                          x.id.substring(7) + "-" +
+                          document.getElementById('1radio'+x.id.substring(7)).checked  + "," +
+                          document.getElementById('2radio'+x.id.substring(7)).checked  + " ");
+    }
+</script>
+{% endblock content %}

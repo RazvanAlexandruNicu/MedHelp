@@ -1,0 +1,69 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="menu">
+    <div class="content-section">
+        <ul class="options">
+            {% if user.is_authenticated %}
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+            </li>
+
+            <!--            MENIU PACIENT-->
+            {% if user.groups.all.0.name == 'Patient' %}
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'set_appointment' %}">Set appointment</a>
+            </li>
+
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'list_prescriptions' %}">My prescriptions</a>
+            </li>
+
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'list_appointments' %}">My appointments</a>
+            </li>
+
+            {% endif %}
+
+            <!--            MENIU MEDIC-->
+            {% if user.groups.all.0.name == 'Medic' %}
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'list_appointments' %}">My appointments</a>
+            </li>
+
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'view_requests' %}">Requests</a>
+            </li>
+
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'addPrescription' %}">Add prescription</a>
+            </li>
+            {% endif %}
+
+            <!-- MENIU ADMIN -->
+            {% if user.groups.all.0.name != 'Medic' and user.groups.all.0.name != 'Patient' %}
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'add_member' %}">Add member</a>
+            </li>
+            {% endif %}
+
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+
+            {% else %}
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+
+            <li class="list-group-item list-group-item-light btn btn-outline-info">
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+            {% endif %}
+
+
+
+        </ul>
+    </div>
+</div>
+{% endblock content %}

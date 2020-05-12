@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="menu">
+    <div class="content-section">
+
+        {% if prescriptions|length <= 0 %}
+            <h2> You have no prescriptions</h2>
+        {% else %}
+            <h2 class="account-heading" style="text-align:center; margin-bottom:4rem;"> Prescriptions</h2>
+            {% for prescription in prescriptions %}
+                <div style="background:#c3ea84"  class="post">
+                    <p> Prescription #{{ forloop.counter }}</p>
+                    <hr>
+                    <p> Description: {{ prescription.description }} </p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

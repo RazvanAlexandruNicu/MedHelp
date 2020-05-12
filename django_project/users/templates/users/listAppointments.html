@@ -1,0 +1,80 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="menu">
+    <div class="content-section">
+    {% if user.groups.all.0.name == 'Medic' %}
+    {% if appointments|length <= 0 %}
+        <h2 class="account-heading"> You have no incoming appointments</h2>
+    {% else %}
+        <h2 class="account-heading" style="text-align:center; margin-bottom:4rem;"> Appointments</h2>
+            {% for appointment in appointments %}
+            {% if appointment.pending == True %}
+            <div style="background:#ffaf7a"  class="post">
+                <p> Appointment Time: {{ appointment.date }} {{ appointment.time }}</p>
+                <p> Patient : {{ appointment.user.firstname }} {{ appointment.user.lastname }}</p>
+                <hr>
+                <p> Description: {{ appointment.description }} </p>
+            </div>
+            {% else %}
+
+            {% if appointment.cancelled == True %}
+            <div style="background:#ff8484"  class="post">
+                <p> Appointment Time: {{ appointment.date }} {{ appointment.time }}</p>
+                <p> Patient : {{ appointment.user.firstname }} {{ appointment.user.lastname }}</p>
+                <hr>
+                <p> Description: {{ appointment.description }} </p>
+            </div>
+            {% else %}
+            <div style="background:#90ee90"  class="post">
+                <p> Appointment Time: {{ appointment.date }} {{ appointment.time }}</p>
+                <p> Patient : {{ appointment.user.firstname }} {{ appointment.user.lastname }}</p>
+                <hr>
+                <p> Description: {{ appointment.description }} </p>
+            </div>
+            {% endif %}
+
+            {% endif %}
+            {% endfor %}
+
+    {% endif %}
+    {% endif %}
+
+    {% if user.groups.all.0.name == 'Patient' %}
+    {% if appointments|length <= 0 %}
+        <h2 > You have no incoming appointments</h2>
+    {% else %}
+        <h2 class="account-heading" style="text-align:center; margin-bottom:4rem;"> Appointments</h2>
+
+            {% for appointment in appointments %}
+                {% if appointment.pending == True %}
+                <div style="background:#ffaf7a"  class="post">
+                    <p> (pending) Appointment Time: {{ appointment.date }} {{ appointment.time }}</p>
+                    <hr>
+                    <p> Description: {{ appointment.description }}</p>
+                </div>
+                {% else %}
+
+                    {% if appointment.cancelled == True %}
+                    <div style="background:#ff8484"  class="post">
+                        <p> (cancelled) Appointment Time: {{ appointment.date }} {{ appointment.time }}</p>
+                        <hr>
+                        <p> Description: {{ appointment.description }} </p>
+                    </div>
+                    {% else %}
+                    <div style="background:#90ee90"  class="post">
+                        <p> (accepted) Appointment Time: {{ appointment.date }} {{ appointment.time }}</p>
+                        <hr>
+                        <p> Description: {{ appointment.description }}</p>
+                    </div>
+                    {% endif %}
+
+                {% endif %}
+            {% endfor %}
+
+    {% endif %}
+    {% endif %}
+    </div>
+</div>
+{% endblock content %}

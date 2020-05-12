@@ -1,0 +1,226 @@
+body {
+  width: 80%;
+  margin-left:auto;
+  margin-right:auto;
+  background: #ddfbd2;
+  color: #333333;
+  margin-top: 5rem;
+  background: url('/media/background.png') no-repeat center center fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+hr {
+   border:0.003rem solid black;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+ul {
+  margin: 0;
+}
+
+.bg-steel {
+  background-color: #5f788a;
+}
+
+.site-header nav{
+    background: #2771B1;
+}
+.site-header .navbar-nav .nav-link {
+  color: white;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.logo {
+    height:3rem;
+    margin-right:2rem;
+}
+.menu {
+    width:100%;
+    padding: 2rem;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#mydropdown {
+    padding: 0.7rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: #2771B1;
+}
+
+#div_id_patient {
+    display:none;
+}
+
+.patient_info {
+    display:block;
+    padding: 1rem;
+    background: white;
+    color:#2771B1;
+    margin: 1rem;
+    border-bottom: 1px solid #2771B1;
+    max-height:7rem;
+}
+
+.post {
+    padding: 1rem;
+    background: white;
+    color:#2771B1;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #2771B1;
+}
+.menu .options {
+    padding-top:3rem;
+    list-style-type:none;
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.menu .options li:hover{
+    background:#199dbb;
+}
+
+@media screen and (max-device-width:640px), screen and (max-width:640px) {
+    .menu .options li {
+        padding:0;
+        max-width:90%;
+        border:3px solid black;
+        margin-bottom: 3rem;
+        border-radius: 2rem;
+        background: #2771B1;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+
+
+    .content-section {
+      padding: 10px 20px;
+      margin-bottom: 20px;
+      margin-left:auto;
+      margin-right:auto;
+      color:#2771B1;
+    }
+
+}
+
+
+@media screen and (min-device-width:640px), screen and (min-width:640px) {
+    .menu .options li {
+        border:2px solid black;
+        width:auto;
+        padding: 0.2rem;
+        margin-bottom: 1rem;
+        border-radius: 2rem;
+        background: #2771B1;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .content-section {
+      padding: 10px 20px;
+      border-radius: 3px;
+      margin-bottom: 20px;
+      margin-left:auto;
+      margin-right:auto;
+      color:red;
+      width:60%;
+      color:#2771B1;
+    }
+
+    #customxxl {
+        width:50%;
+    }
+}
+
+.menu .options a {
+    color:white;
+}
+
+.mycontainer {
+    boder: 1px solid black;
+    background:red;
+    margin-left:auto;
+    margin-right:auto;
+    display:flex;
+}
+
+.content-section h1 {
+    color:green;
+}
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2rem;
+}
+
+#xxl p {
+    text-indent: 3rem;
+    margin-top: 1rem;
+    color:darkblue;
+    font-weight:600;
+}
+
+#aboutphoto {
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    height: 10rem;
+}
+
+
+
